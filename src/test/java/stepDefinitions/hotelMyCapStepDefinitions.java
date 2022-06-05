@@ -2,6 +2,7 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Given;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 import pages.hotelMyCap;
 import utilities.ConfigReader;
 import utilities.Driver;
@@ -13,39 +14,31 @@ public class hotelMyCapStepDefinitions {
     public void kullanici_hotel_my_cap_website_gider() {
         Driver.getDriver().get(ConfigReader.getProperty("hotelMyCapUrl"));
     }
-    @Given("Home linkinin visibled and enabled oldugunu gorur")
-    public void home_linkinin_visibled_and_enabled_oldugunu_gorur() {
-        Assert.assertTrue(hotelMyCap.homeLink.isDisplayed());
-        Assert.assertTrue(hotelMyCap.homeLink.isEnabled());
-    }
-    @Given("Rooms linkinin visibled and enabled oldugunu gorur")
-    public void rooms_linkinin_visibled_and_enabled_oldugunu_gorur() {
-        Assert.assertTrue(hotelMyCap.roomsLink.isDisplayed());
-        Assert.assertTrue(hotelMyCap.roomsLink.isEnabled());
-    }
-    @Given("Resturant linkinin visibled and enabled oldugunu gorur")
-    public void resturant_linkinin_visibled_and_enabled_oldugunu_gorur() {
-        Assert.assertTrue(hotelMyCap.restaurantLink.isDisplayed());
-        Assert.assertTrue(hotelMyCap.restaurantLink.isEnabled());
-    }
+
     @Given("About linkinin visibled and enabled oldugunu gorur")
     public void about_linkinin_visibled_and_enabled_oldugunu_gorur() {
-        Assert.assertTrue(hotelMyCap.aboutLink.isDisplayed());
-        Assert.assertTrue(hotelMyCap.aboutLink.isEnabled());
+        hotelMyCap.aboutLink.click();
+        Assert.assertTrue(hotelMyCap.aboutBaslik.isDisplayed());
+        Assert.assertTrue(hotelMyCap.aboutVideo.isDisplayed());
+        Assert.assertTrue(hotelMyCap.aboutAciklama.isDisplayed());
     }
     @Given("Blog linkinin visibled and enabled oldugunu gorur")
     public void blog_linkinin_visibled_and_enabled_oldugunu_gorur() {
-        Assert.assertTrue(hotelMyCap.blogLink.isDisplayed());
-        Assert.assertTrue(hotelMyCap.blogLink.isEnabled());
+        hotelMyCap.blogLink.click();
+        Assert.assertTrue(hotelMyCap.blogBaslik.isDisplayed());
+        Assert.assertTrue(hotelMyCap.blogLinks.size()==6);
+        for (WebElement blogcuk:hotelMyCap.blogLinks) {
+            Assert.assertTrue(blogcuk.isEnabled());
+        }
     }
     @Given("Contact linkinin visibled and enabled oldugunu gorur")
     public void contact_linkinin_visibled_and_enabled_oldugunu_gorur() {
-        Assert.assertTrue(hotelMyCap.contactLink.isDisplayed());
-        Assert.assertTrue(hotelMyCap.contactLink.isEnabled());
+        hotelMyCap.contactLink.click();
+        Assert.assertTrue(hotelMyCap.contactBaslik.isDisplayed());
+        Assert.assertTrue(hotelMyCap.contakFormlar.size()==6);
+        for (WebElement kontaklar:hotelMyCap.contakFormlar) {
+            Assert.assertTrue(kontaklar.isEnabled());
+        }
     }
-    @Given("Login linkinin visibled and enabled oldugunu gorur")
-    public void login_linkinin_visibled_and_enabled_oldugunu_gorur() {
-        Assert.assertTrue(hotelMyCap.loginLink.isDisplayed());
-        Assert.assertTrue(hotelMyCap.loginLink.isEnabled());
     }
-}
+
