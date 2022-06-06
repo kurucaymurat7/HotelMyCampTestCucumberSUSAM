@@ -38,8 +38,9 @@ public class RoomPage {
     public WebElement categoriesSection;
 
 
-    @FindBy(xpath = "//div[@class='categories']//li")
+    @FindBy(xpath = "//div[@class='categories']/li")
     public List<WebElement> categoriesElemanlari;
+
 
     @FindBy(xpath = "//h3[text()='Recent Blog']")
     public WebElement recentBlogElement;
