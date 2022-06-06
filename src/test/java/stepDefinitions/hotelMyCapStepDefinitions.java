@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
@@ -14,25 +15,15 @@ public class hotelMyCapStepDefinitions {
     public void kullanici_hotel_my_cap_website_gider() {
         Driver.getDriver().get(ConfigReader.getProperty("hotelMyCapUrl"));
     }
-
-    @Given("Home linkinin visibled and enabled oldugunu gorur")
-    public void home_linkinin_visibled_and_enabled_oldugunu_gorur() { }
-    @Given("Rooms linkinin visibled and enabled oldugunu gorur")
-    public void rooms_linkinin_visibled_and_enabled_oldugunu_gorur() { }
-    @Given("Resturant linkinin visibled and enabled oldugunu gorur")
-    public void resturant_linkinin_visibled_and_enabled_oldugunu_gorur() { }
-
-
-
     @Given("About linkinin visibled and enabled oldugunu gorur")
-    public void about_linkinin_visibled_and_enabled_oldugunu_gorur() {
+    public void about_linkinin() {
         hotelMyCap.aboutLink.click();
         Assert.assertTrue(hotelMyCap.aboutBaslik.isDisplayed());
         Assert.assertTrue(hotelMyCap.aboutVideo.isDisplayed());
         Assert.assertTrue(hotelMyCap.aboutAciklama.isDisplayed());
     }
-    @Given("Blog linkinin visibled and enabled oldugunu gorur")
-    public void blog_linkinin_visibled_and_enabled_oldugunu_gorur() {
+    @Given("Blog linkinin baslik ve link testi")
+    public void blog_linkinin() {
         hotelMyCap.blogLink.click();
         Assert.assertTrue(hotelMyCap.blogBaslik.isDisplayed());
         Assert.assertTrue(hotelMyCap.blogLinks.size() == 6);
@@ -40,8 +31,8 @@ public class hotelMyCapStepDefinitions {
             Assert.assertTrue(blogcuk.isEnabled());
         }
     }
-    @Given("Contact linkinin visibled and enabled oldugunu gorur")
-    public void contact_linkinin_visibled_and_enabled_oldugunu_gorur() {
+    @Given("Contact linkinin gorunurlugu ve contactForm sayi testi")
+    public void contact_linkinin() {
         hotelMyCap.contactLink.click();
         Assert.assertTrue(hotelMyCap.contactBaslik.isDisplayed());
         Assert.assertTrue(hotelMyCap.contakFormlar.size() == 6);
@@ -49,8 +40,4 @@ public class hotelMyCapStepDefinitions {
             Assert.assertTrue(kontaklar.isEnabled());
         }
     }
-
-
-    @Given("Login linkinin visibled and enabled oldugunu gorur")
-    public void login_linkinin_visibled_and_enabled_oldugunu_gorur() { }
 }
