@@ -1,6 +1,7 @@
 package utilities;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -18,6 +19,20 @@ import java.util.List;
 import java.util.function.Function;
 
 public class ReusableMethods {
+
+    //========Assert isDisplayed for List<WebElement>=====//
+    public static void assertIsDisplayed(List<WebElement> elementList) {
+        for (WebElement element: elementList){
+            Assert.assertTrue(element.isDisplayed());
+        }
+    }
+    //========Assert isEnabled for List<WebElement>=====//
+    public static void assertIsEnabled(List<WebElement> elementList) {
+        for (WebElement element: elementList){
+            Assert.assertTrue(element.isEnabled());
+        }
+    }
+
     public static String getScreenshot(String name) throws IOException {
         // naming the screenshot with the current date to avoid duplication
         String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
@@ -47,6 +62,18 @@ public class ReusableMethods {
         Actions actions = new Actions(Driver.getDriver());
         actions.moveToElement(element).perform();
     }
+    //========Scroll Into View=====//
+    public static void scrollIntoView(WebElement element) {
+        JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
+        jse.executeScript("arguments[0].scrollIntoView(true);",element);
+    }
+
+    //========ScrollBy=====//
+    public static void scrollBy(long scrollY) {
+        JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
+        jse.executeScript("window.scrollBy(0,"+scrollY+")", "");
+    }
+
     //==========Return a list of string given a list of Web Element====////
     public static List<String> getElementsText(List<WebElement> list) {
         List<String> elemTexts = new ArrayList<>();

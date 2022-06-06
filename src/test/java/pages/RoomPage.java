@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.ConfigReader;
 import utilities.Driver;
 
 import java.util.List;
@@ -37,13 +38,13 @@ public class RoomPage {
     public WebElement categoriesSection;
 
 
-    @FindBy(xpath = "//section[1]/div/div/div[2]/div[2]/div/li/a")
+    @FindBy(xpath = "//div[@class='categories']//li")
     public List<WebElement> categoriesElemanlari;
 
     @FindBy(xpath = "//h3[text()='Recent Blog']")
     public WebElement recentBlogElement;
 
-    @FindBy(xpath = "//section[1]/div/div/div[2]/div[3]/div/div/h3/a")
+    @FindBy(xpath = "//h3[@class='heading']/a")
     public List<WebElement> recentBlogElemanlari;
 
     @FindBy(xpath = "//iframe[@src='/home/tagcloud']")
@@ -54,4 +55,16 @@ public class RoomPage {
 
     @FindBy(xpath = "//a[@class= 'tag-cloud-link']")
     public List<WebElement> tagCloudElemanlari;
+
+    @FindBy(xpath = "//*[text()='Queen room']")
+    public WebElement secilenOda;
+
+    @FindBy(xpath = "//div[@class='owl-item active']")
+    public WebElement odaResmiElement;
+
+    @FindBy(xpath = "//ul[@class='list']/li")
+    public List<WebElement> aciklamaElemanlari;
+
+    @FindBy(xpath = "//p[@class='pt-1']/a")
+    public List<WebElement> onerilenOdalar;
 }

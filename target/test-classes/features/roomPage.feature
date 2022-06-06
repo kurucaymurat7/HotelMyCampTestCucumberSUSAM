@@ -1,7 +1,6 @@
 Feature:
-  Scenario: TC01 RoomPage web elementleri test edilir
-    Given Kullanici HotelMyCap website gider
-    Then Kullanici Rooms linkine tiklar
+  Scenario: US02 RoomPage web elementleri test edilir
+    Given Kullanici Rooms sayfasina gider
     And Rooms basliginin visibled oldugunu gorur
     And Advance Search basliginin visibled oldugunu gorur
     And Advance Search form elemanlarini gorur
@@ -15,3 +14,11 @@ Feature:
     And Recent Blog altindaki linkleri gorur
     And Tag Cloud bolumunu gorur
     Then Tag Cloud altindaki linkleri gorur
+
+  Scenario: US03 Secilen oda sayfasi test edilir
+    Given Kullanici Rooms sayfasina gider
+    And "Queen room" secer
+    And Oda resminin visibled oldugunu gorur
+    And Aciklama bolumu yazilarinin visibled oldugunu gorur
+    And Onerilen odalarin tiklanir oldugunu gorur
+    And Categories bolumu altindaki linklerin tiklanir oldugunu gorur

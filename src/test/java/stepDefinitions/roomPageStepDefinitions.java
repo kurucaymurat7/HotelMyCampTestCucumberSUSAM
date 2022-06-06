@@ -9,6 +9,7 @@ import pages.RoomPage;
 import pages.hotelMyCap;
 import utilities.ConfigReader;
 import utilities.Driver;
+import utilities.ReusableMethods;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -17,12 +18,11 @@ import java.util.List;
 
 public class roomPageStepDefinitions {
     RoomPage roomPage = new RoomPage();
-    hotelMyCap hotelMyCapPage = new hotelMyCap();
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
 
-    @Then("Kullanici Rooms linkine tiklar")
-    public void kullanici_rooms_linkine_tiklar() {
-        hotelMyCapPage.roomsLink.click();
+    @Then("Kullanici Rooms sayfasina gider")
+    public void kullanici_rooms_sayfasina_gider() {
+        Driver.getDriver().get(ConfigReader.getProperty("hotelMyCapRoomUrl"));
     }
     @Then("Rooms basliginin visibled oldugunu gorur")
     public void rooms_basliginin_visibled_oldugunu_gorur() {
@@ -61,16 +61,17 @@ public class roomPageStepDefinitions {
     }
     @Then("Categories bolumunde RoomTypelari gorur")
     public void categories_bolumunde_room_typelari_gorur() {
-        //List<String> categoriesRoomType =  new ArrayList<>();
-        //roomPage.categoriesElemanlari.forEach(t-> categoriesRoomType.add(t.getText()));
+        ReusableMethods.scrollBy(850);
+        List<String> categoriesRoomType =ReusableMethods.getElementsText(roomPage.categoriesElemanlari);
 
-        //Select select = new Select(roomPage.roomTypeDdm);
-        //List<String> advanceSearchRoomType =  new ArrayList<>();
-        //select.getOptions().forEach(t-> advanceSearchRoomType.add(t.getText()));
+        Select select = new Select(roomPage.roomTypeDdm);
+        List<String> advanceSearchRoomType =  new ArrayList<>();
+        select.getOptions().forEach(t-> advanceSearchRoomType.add(t.getText()));
 
-        //System.out.println("categories => "+ categoriesRoomType);
-        //System.out.println("advanceSearch => "+ advanceSearchRoomType);
+        System.out.println("categories => "+ categoriesRoomType);
+        System.out.println("advanceSearch => "+ advanceSearchRoomType);
         //Assert.assertTrue(categoriesRoomType.containsAll(advanceSearchRoomType));
+        ReusableMethods.waitFor(5);
 
     }
     @Then("Categories bolumunun altinda Recent Blog bolumunu gorur")
@@ -79,12 +80,13 @@ public class roomPageStepDefinitions {
     }
     @Then("Recent Blog altindaki linkleri gorur")
     public void recent_blog_altindaki_linkleri_gorur() {
-        //System.out.println("recent blog size "+roomPage.recentBlogElemanlari.size());
-        //for (WebElement each: roomPage.recentBlogElemanlari){
-        //    System.out.println(each.getText());
-        //    System.out.println(each.isDisplayed());
-        //    //Assert.assertTrue(each.isDisplayed());
-        //}
+        ReusableMethods.scrollBy(750);
+        System.out.println("recent blog size "+roomPage.recentBlogElemanlari.size());
+        for (WebElement each: roomPage.recentBlogElemanlari){
+            System.out.println(each.getText());
+            System.out.println(each.isDisplayed());
+            //Assert.assertTrue(each.isDisplayed());
+        }
 
     }
     @Then("Tag Cloud bolumunu gorur")
