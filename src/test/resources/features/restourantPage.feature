@@ -1,4 +1,4 @@
-Feature: US004 HotelMyCap Restourant sayfasi tesi
+Feature: US004 HotelMyCap Restourant sayfasi testi
 
   Scenario: TC01 sayfadaki  webelementlerin visibled ve enabled oldugu test edilir
     Given Kullanici HotelMyCap website gider

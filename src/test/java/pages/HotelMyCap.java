@@ -77,4 +77,22 @@ public class HotelMyCap {
 
     @FindBy(xpath = "//button[@role='button']")
     public List<WebElement> yemekResimleriSecimButonlariList;
+
+    @FindBy (xpath = "//li[@id='navLogon']")
+    public WebElement ilkLoginButonu;
+
+    @FindBy(tagName = "h1")
+    public WebElement loginBasligi;
+
+    @FindBy (xpath = "//input[@id='btnSubmit']")
+    public WebElement ikinciLoginButonu;
+
+    @FindBy (xpath = "//span[@class='btn btn-primary py-3 px-5']")
+    public WebElement createNewAccountButtonu;
+
+    @FindBy(xpath = "//input[@class='form-control required']")
+    public WebElement userNameTextBox;
+
+    @FindBy(xpath = "//input[@class='form-control required password']")
+    public WebElement passwordTextBox;
 }

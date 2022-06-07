@@ -129,4 +129,33 @@ public class HotelMyCapStepDefinitions {
     public void sayfayiKapatir() {
         Driver.closeDriver();
     }
+
+    @Given("kullanici login sayfasina gider")
+    public void kullaniciLoginSayfasinaGider() {
+        kullanici_hotel_my_cap_website_gider();
+        hotelMyCap.ilkLoginButonu.click();
+    }
+
+    @And("Login basliginin gorunur oldugu test edilir")
+    public void loginBasligininGorunurOlduguTestEdilir() {
+        Assert.assertTrue(hotelMyCap.loginBasligi.isDisplayed());
+    }
+
+    @And("Login ve Create a new account butonlarinin enable oldugu test edilir")
+    public void loginVeCreateANewAccountButonlarininEnableOlduguTestEdilir() {
+        Assert.assertTrue(hotelMyCap.ikinciLoginButonu.isEnabled());
+        Assert.assertTrue(hotelMyCap.createNewAccountButtonu.isEnabled());
+    }
+
+    @And("Username ve Password type attribute’larinin text ve password oldugu test edilir")
+    public void usernameVePasswordTypeAttributeLarininTextVePasswordOlduguTestEdilir() {
+String usernameExpectedTypeAttribute="text";
+String passwordExpectedTypeAttribute="password";
+
+String usernameActualTypeAttribute=hotelMyCap.userNameTextBox.getAttribute("type");
+String passwordActualTypeAttribute=hotelMyCap.passwordTextBox.getAttribute("type");
+
+Assert.assertEquals(usernameExpectedTypeAttribute,usernameActualTypeAttribute);
+Assert.assertEquals(passwordExpectedTypeAttribute,passwordActualTypeAttribute);
+    }
 }
