@@ -32,4 +32,15 @@ public class hotelMyCap {
     @FindBy (xpath = "//*[text()='Log in']")
     public WebElement loginLink;
 
+    @FindBy (xpath = "//*[text()='Check-in Date']")
+    public WebElement checkinDate;
+
+    @FindBy (xpath = "//*[text()='Check-out Date']")
+    public WebElement checkoutDate;
+
+    @FindBy (xpath = "//*[text()='Room']")
+    public WebElement room;
+
+    @FindBy (xpath = "//*[text()='Customer']")
+    public WebElement customer;
 }
