@@ -8,9 +8,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.HotelMyCap;
 import utilities.ConfigReader;
 import utilities.Driver;
+
+import java.time.Duration;
 
 public class HotelMyCapStepDefinitions {
     HotelMyCap hotelMyCap = new HotelMyCap();
@@ -110,7 +114,7 @@ public class HotelMyCapStepDefinitions {
     @And("Yemek resimleri sliderinin gorundugu test edilir")
     public void yemekResimleriSliderininGorunduguTestEdilir() {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-        js.executeScript("arguments[0].scrollIntoView(true);",hotelMyCap.yemekResimleriSecimButonlariList.get(0));
+        js.executeScript("arguments[0].scrollIntoView(true);", hotelMyCap.yemekResimleriSecimButonlariList.get(0));
         Assert.assertTrue(hotelMyCap.yemekResimleriSlideri.isDisplayed());
     }
 
@@ -122,7 +126,7 @@ public class HotelMyCapStepDefinitions {
 
     @And("resimlerin altinda dort adet butonun enable oldugu test edilir")
     public void resimlerinAltindaDortAdetButonunEnableOlduguTestEdilir() {
-        hotelMyCap.yemekResimleriSecimButonlariList.stream().forEach(t->Assert.assertTrue(t.isEnabled()));
+        hotelMyCap.yemekResimleriSecimButonlariList.stream().forEach(t -> Assert.assertTrue(t.isEnabled()));
     }
 
     @Then("sayfayi kapatir")
@@ -149,13 +153,24 @@ public class HotelMyCapStepDefinitions {
 
     @And("Username ve Password type attribute’larinin text ve password oldugu test edilir")
     public void usernameVePasswordTypeAttributeLarininTextVePasswordOlduguTestEdilir() {
-String usernameExpectedTypeAttribute="text";
-String passwordExpectedTypeAttribute="password";
+        String usernameExpectedTypeAttribute = "text";
+        String passwordExpectedTypeAttribute = "password";
+        System.out.println("Erkam Cok uslu");
+        String usernameActualTypeAttribute = hotelMyCap.userNameTextBox.getAttribute("type");
+        String passwordActualTypeAttribute = hotelMyCap.passwordTextBox.getAttribute("type");
 
-String usernameActualTypeAttribute=hotelMyCap.userNameTextBox.getAttribute("type");
-String passwordActualTypeAttribute=hotelMyCap.passwordTextBox.getAttribute("type");
+        Assert.assertEquals(usernameExpectedTypeAttribute, usernameActualTypeAttribute);
+        Assert.assertEquals(passwordExpectedTypeAttribute, passwordActualTypeAttribute);
+    }
 
-Assert.assertEquals(usernameExpectedTypeAttribute,usernameActualTypeAttribute);
-Assert.assertEquals(passwordExpectedTypeAttribute,passwordActualTypeAttribute);
+    @And("dort hizmetin yanyana ve gorunur oldugunu test eder")
+    public void dortHizmetinYanyanaVeGorunurOldugunuTestEder() {
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript(  "arguments[0].scrollIntoView(true);",hotelMyCap.ourRoomsText);
+        WebDriverWait wait=new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOf(hotelMyCap.hizmetlerList.get(0)));
+
+        hotelMyCap.hizmetlerList.stream().forEach(t->Assert.assertTrue(t.isDisplayed()));
+      hotelMyCap.hizmetlerList.stream().forEach(t-> System.out.println(t.getText()));
     }
 }

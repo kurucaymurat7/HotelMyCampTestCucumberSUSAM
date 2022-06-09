@@ -78,11 +78,12 @@ public class HotelMyCap {
     @FindBy(xpath = "//button[@role='button']")
     public List<WebElement> yemekResimleriSecimButonlariList;
 
+    @FindBy(tagName = "h1")
+    public WebElement loginBasligi;
+
     @FindBy (xpath = "//li[@id='navLogon']")
     public WebElement ilkLoginButonu;
 
-    @FindBy(tagName = "h1")
-    public WebElement loginBasligi;
 
     @FindBy (xpath = "//input[@id='btnSubmit']")
     public WebElement ikinciLoginButonu;
@@ -95,4 +96,10 @@ public class HotelMyCap {
 
     @FindBy(xpath = "//input[@class='form-control required password']")
     public WebElement passwordTextBox;
+
+    @FindBy(xpath = "//div[@class='media-body p-2 mt-2']")
+    public List<WebElement> hizmetlerList;
+
+    @FindBy(xpath = "(//h2[@class='mb-4'])[3]")
+    public WebElement ourRoomsText;
 }
