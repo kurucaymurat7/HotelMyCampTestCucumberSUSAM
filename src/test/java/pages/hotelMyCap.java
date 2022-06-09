@@ -194,4 +194,32 @@ public class HotelMyCap {
     @FindBy (xpath = "//h2[@class='ftco-heading-2']")
     public List<WebElement> footerList;
 
+
+    @FindBy (xpath = "//*[text()='About']")
+    public WebElement aboutBaslik;
+
+    @FindBy (xpath = "//section[1]/div/div/div[1]")
+    public WebElement aboutVideo;
+
+    @FindBy (xpath = "//div[@class='pb-md-5']")
+    public WebElement aboutAciklama;
+
+
+
+
+    @FindBy (xpath = "//*[text()='Blog']")
+    public WebElement blogBaslik;
+
+    @FindBy(xpath="//section[1]/div/div[2]/div/div/a")
+    public List<WebElement> blogLinks;
+
+
+
+
+    @FindBy (xpath = "//*[text()='Contact Form']")
+    public WebElement contactBaslik;
+
+    @FindBy (xpath="//div[@class='form-group']")
+    public List<WebElement> contakFormlar;
+
 }

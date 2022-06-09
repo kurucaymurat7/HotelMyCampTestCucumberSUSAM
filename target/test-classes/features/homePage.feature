@@ -9,7 +9,6 @@ Feature: US01 HotelMyCap Homepage sayfasi tesi
     And Blog linkinin visibled and enabled oldugunu gorur
     And Contact linkinin visibled and enabled oldugunu gorur
     And Login linkinin visibled and enabled oldugunu gorur
-
     And dort hizmetin yanyana ve gorunur oldugunu test eder
 
 
