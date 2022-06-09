@@ -2,18 +2,20 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Given;
 import org.junit.Assert;
-import pages.hotelMyCap;
+import pages.HotelMyCap;
+
 import utilities.ConfigReader;
 import utilities.Driver;
 
 public class hotelMyCapStepDefinitions {
-    hotelMyCap hotelMyCap = new hotelMyCap();
+    HotelMyCap hotelMyCap = new HotelMyCap();
 
     @Given("Kullanici HotelMyCap website gider")
     public void kullanici_hotel_my_cap_website_gider() {
         Driver.getDriver().get(ConfigReader.getProperty("hotelMyCapUrl"));
     }
-    @Given("Home linkinin visibled and enabled oldugunu gorur")
+    @Given("Home " +
+            " visibled and enabled oldugunu gorur")
     public void home_linkinin_visibled_and_enabled_oldugunu_gorur() {
         Assert.assertTrue(hotelMyCap.homeLink.isDisplayed());
         Assert.assertTrue(hotelMyCap.homeLink.isEnabled());
