@@ -1,6 +1,7 @@
 package utilities;
 
 import org.apache.commons.io.FileUtils;
+
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -8,6 +9,12 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.*;
+import pages.HotelMyCap;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -17,21 +24,24 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Function;
 
 public class ReusableMethods {
 
     //========Assert isDisplayed for List<WebElement>=====//
     public static void assertIsDisplayed(List<WebElement> elementList) {
-        for (WebElement element: elementList){
+        for (WebElement element : elementList) {
             Assert.assertTrue(element.isDisplayed());
         }
     }
+
     //========Assert isEnabled for List<WebElement>=====//
     public static void assertIsEnabled(List<WebElement> elementList) {
-        for (WebElement element: elementList){
+        for (WebElement element : elementList) {
             Assert.assertTrue(element.isEnabled());
         }
     }
+
 
     public static String getScreenshot(String name) throws IOException {
         // naming the screenshot with the current date to avoid duplication
@@ -46,33 +56,52 @@ public class ReusableMethods {
         FileUtils.copyFile(source, finalDestination);
         return target;
     }
+
     //========Switching Window=====//
     public static void switchToWindow(String targetTitle) {
         String origin = Driver.getDriver().getWindowHandle();
         for (String handle : Driver.getDriver().getWindowHandles()) {
             Driver.getDriver().switchTo().window(handle);
             if (Driver.getDriver().getTitle().equals(targetTitle)) {
+
                 return;
+
+                //return;
+
+
             }
         }
         Driver.getDriver().switchTo().window(origin);
     }
+
+
+    public static void scroolDown(WebElement element) {
+        HotelMyCap hotelMyCap = new HotelMyCap();
+        WebDriverWait wait = wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
+        JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
+        jse.executeScript("arguments[0].scrollIntoView(true);", element);
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+
     //========Hover Over=====//
     public static void hover(WebElement element) {
         Actions actions = new Actions(Driver.getDriver());
         actions.moveToElement(element).perform();
     }
+
     //========Scroll Into View=====//
     public static void scrollIntoView(WebElement element) {
         JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
-        jse.executeScript("arguments[0].scrollIntoView(true);",element);
+        jse.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     //========ScrollBy=====//
     public static void scrollBy(long scrollY) {
         JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
-        jse.executeScript("window.scrollBy(0,"+scrollY+")", "");
+        jse.executeScript("window.scrollBy(0," + scrollY + ")", "");
     }
+
 
     //==========Return a list of string given a list of Web Element====////
     public static List<String> getElementsText(List<WebElement> list) {
@@ -84,6 +113,7 @@ public class ReusableMethods {
         }
         return elemTexts;
     }
+
     //========Returns the Text of the element given an element locator==//
     public static List<String> getElementsText(By locator) {
         List<WebElement> elems = Driver.getDriver().findElements(locator);
@@ -95,6 +125,7 @@ public class ReusableMethods {
         }
         return elemTexts;
     }
+
     //   HARD WAIT WITH THREAD.SLEEP
 //   waitFor(5);  => waits for 5 second
     public static void waitFor(int sec) {
@@ -104,23 +135,28 @@ public class ReusableMethods {
             e.printStackTrace();
         }
     }
+
     //===============Explicit Wait==============//
     public static WebElement waitForVisibility(WebElement element, int timeout) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
+
     public static WebElement waitForVisibility(By locator, int timeout) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+
     public static WebElement waitForClickablility(WebElement element, int timeout) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
+
     public static WebElement waitForClickablility(By locator, int timeout) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
+
     public static void clickWithTimeOut(WebElement element, int timeout) {
         for (int i = 0; i < timeout; i++) {
             try {
@@ -131,6 +167,7 @@ public class ReusableMethods {
             }
         }
     }
+
     public static void waitForPageToLoad(long timeout) {
         ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
@@ -146,6 +183,7 @@ public class ReusableMethods {
                     "Timeout waiting for Page Load Request to complete after " + timeout + " seconds");
         }
     }
+
     //======Fluent Wait====//
     public static WebElement fluentWait(final WebElement webElement, int timeout) {
         //FluentWait<WebDriver> wait = new FluentWait<WebDriver>(Driver.getDriver()).withTimeout(timeinsec, TimeUnit.SECONDS).pollingEvery(timeinsec, TimeUnit.SECONDS);
@@ -159,4 +197,8 @@ public class ReusableMethods {
         });
         return element;
     }
+
 }
+
+
+
